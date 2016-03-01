@@ -61,6 +61,20 @@ object MyModule {
     go(0, 0, as.length -1)
   }
   
+  // Polymorphic function
+  def isSorted[A](as: Array[A], greaterThan: (A,A) => Boolean): Boolean = {
+    //If all recursive calls made by a function are in tail position, Scala compiles the recursion to iterative loops that do not consume call stack
+    //frames for each iteration. If we are expecting this to occur for a recursive function we write, we can tell the Scala compiler about this
+    //assumption using an annotation:
+    @annotation.tailrec
+    def go(n: Int, max: Int): Boolean = {
+      if (n == max) true
+      else if (greaterThan(as(n+1),as(n))) go(n + 1, max)
+      else false
+    }
+    go(0, as.length -1)
+  }
+  
   //The return type of Unit indicates that this method does not return a meaningful value
   def main(args: Array[String]): Unit = {
     
@@ -74,6 +88,12 @@ object MyModule {
     println(formatResult("lamba3", 7, x => x + 1))
     println(formatResult("lamba4", 7, _ + 1 )) //sometimes called underscore syntax for a function literal
     println(formatResult("lamba5", 7, x => {val r = x + 1; r}))
+    
+    val as1 = Array(1,2,3,10)
+    println("as1 is sorted : " + isSorted(as1,(x: Int,y: Int) => x > y).toString())
+    val as2 = Array(1.1,7.2,6.9)
+    println("as2 is sorted : " + isSorted(as2,(x: Double,y: Double) => x > y).toString())
+
   }
   
 }
