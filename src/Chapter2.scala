@@ -46,4 +46,12 @@ object MyModule {
     println(formatResult("absolute value",-42, abs))
     println(formatResult("factorial",7, factorial))
     println(formatResult("Fibonacci number",6, fib))
+    
+    //Scala provides a syntax for declaring these nameless or anonymous functions, often called function literals, lambda functions, lambda expressions, or just lambdas
+    
+    println(formatResult("lamba1", 7, (x: Int) => x + 1))
+    println(formatResult("lamba2", 7, (x) => x + 1))
+    println(formatResult("lamba3", 7, x => x + 1))
+    println(formatResult("lamba4", 7, _ + 1 ))
+    println(formatResult("lamba5", 7, x => {val r = x + 1; r}))
 }
