@@ -75,10 +75,19 @@ object MyModule {
     go(0, as.length -1)
   }
   
+  //a higher-order function for doing what is called partial application: takes a value and a function of two
+  //arguments, and returns a function of one argument as its result
+  //see example in main
   def partial1[A,B,C](a: A, f: (A,B) => C): B => C = {
     f(a,_)
     //(b: B) => f(a, b)
   }
+  
+  //see example in main
+  def curry[A,B,C](f: (A, B) => C): A => B => C = {
+    (a: A) => (b: B) => f(a, b)
+   }
+  
     
   //The return type of Unit indicates that this method does not return a meaningful value
   def main(args: Array[String]): Unit = {
@@ -101,6 +110,10 @@ object MyModule {
 
     val multiplyByTwo = partial1(2, (a:Int, b:Int) => a * b)
     println("multiplyByTwo of %d is %d".format(5,multiplyByTwo(5)))
+    
+    val multiplybyX = curry((a:Int, b:Int) => a * b)
+    val multiplyby3 = multiplybyX(3)
+    println("multiplyBy3 of %d is %d".format(5,multiplyby3(5)))
   }
   
 }
