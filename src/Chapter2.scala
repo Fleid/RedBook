@@ -75,6 +75,11 @@ object MyModule {
     go(0, as.length -1)
   }
   
+  def partial1[A,B,C](a: A, f: (A,B) => C): B => C = {
+    f(a,_)
+    //(b: B) => f(a, b)
+  }
+    
   //The return type of Unit indicates that this method does not return a meaningful value
   def main(args: Array[String]): Unit = {
     
@@ -94,6 +99,8 @@ object MyModule {
     val as2 = Array(1.1,7.2,6.9)
     println("as2 is sorted : " + isSorted(as2,(x: Double,y: Double) => x > y).toString())
 
+    val multiplyByTwo = partial1(2, (a:Int, b:Int) => a * b)
+    println("multiplyByTwo of %d is %d".format(5,multiplyByTwo(5)))
   }
   
 }
