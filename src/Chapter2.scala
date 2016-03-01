@@ -41,8 +41,29 @@ object MyModule {
     go(n)
   }
   
+  // Polymorphic function
+  def binarySearch[A](as: Array[A], key:A, greaterThan: (A,A) => Boolean): Int = {
+    //If all recursive calls made by a function are in tail position, Scala compiles the recursion to iterative loops that do not consume call stack
+    //frames for each iteration. If we are expecting this to occur for a recursive function we write, we can tell the Scala compiler about this
+    //assumption using an annotation:
+    @annotation.tailrec
+    def go(low: Int, mid: Int, high: Int): Int = {
+      if (low > high) -mid -1
+      else {
+        val mid2 = (low + high) / 2
+        val a = as(mid2)
+        val greater = greaterThan(a, key)
+        if (!greater && !greaterThan(key,a)) mid2 // Then it's equal
+        else if (greater) go(low, mid2, mid2-1)
+        else go(mid2 +1, mid2, high)
+      }
+    }
+    go(0, 0, as.length -1)
+  }
+  
   //The return type of Unit indicates that this method does not return a meaningful value
-  def main(args: Array[String]): Unit =
+  def main(args: Array[String]): Unit = {
+    
     println(formatResult("absolute value",-42, abs))
     println(formatResult("factorial",7, factorial))
     println(formatResult("Fibonacci number",6, fib))
@@ -53,4 +74,6 @@ object MyModule {
     println(formatResult("lamba3", 7, x => x + 1))
     println(formatResult("lamba4", 7, _ + 1 )) //sometimes called underscore syntax for a function literal
     println(formatResult("lamba5", 7, x => {val r = x + 1; r}))
+  }
+  
 }
