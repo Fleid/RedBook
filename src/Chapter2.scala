@@ -33,6 +33,7 @@ object MyModule {
     go(n,1)
   }
   
+  //Ex 1 :
   def fib(n: Int): Int = {
     def go(n: Int): Int =
       if (n <= 1) n
@@ -62,6 +63,7 @@ object MyModule {
   }
   
   // Polymorphic function
+  //Ex 2 :
   def isSorted[A](as: Array[A], greaterThan: (A,A) => Boolean): Boolean = {
     //If all recursive calls made by a function are in tail position, Scala compiles the recursion to iterative loops that do not consume call stack
     //frames for each iteration. If we are expecting this to occur for a recursive function we write, we can tell the Scala compiler about this
@@ -77,17 +79,21 @@ object MyModule {
   
   //a higher-order function for doing what is called partial application: takes a value and a function of two
   //arguments, and returns a function of one argument as its result
-  //see example in main
+  //Ex 3 : see example in main
   def partial1[A,B,C](a: A, f: (A,B) => C): B => C = {
     f(a,_)
     //(b: B) => f(a, b)
   }
   
-  //see example in main
+  //Ex 4 : see example in main
   def curry[A,B,C](f: (A, B) => C): A => B => C = {
     (a: A) => (b: B) => f(a, b)
    }
   
+  //Ex 5
+  def uncurry[A,B,C](f: A => B => C): (A, B) => C = {
+    (a: A, b: B) => f(a)(b)
+  }
     
   //The return type of Unit indicates that this method does not return a meaningful value
   def main(args: Array[String]): Unit = {
@@ -114,6 +120,9 @@ object MyModule {
     val multiplybyX = curry((a:Int, b:Int) => a * b)
     val multiplyby3 = multiplybyX(3)
     println("multiplyBy3 of %d is %d".format(5,multiplyby3(5)))
+    
+    val multiply = uncurry(multiplybyX)
+    println("multiply of %d by %d is %d".format(3,5,multiply(3,5)))
   }
   
 }
