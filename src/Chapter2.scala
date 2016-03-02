@@ -121,6 +121,7 @@ object MyModule {
     val as2 = Array(1.1,7.2,6.9)
     println("as2 is sorted : " + isSorted(as2,(x: Double,y: Double) => x > y).toString())
 
+    //https://groups.google.com/forum/#!topic/scala-functional/tfLo14qU72E
     val multiplyByTwo = partial1(2, (a:Int, b:Int) => a * b)
     println("multiplyByTwo of %d is %d".format(5,multiplyByTwo(5)))
     
