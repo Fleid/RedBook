@@ -90,9 +90,16 @@ object MyModule {
     (a: A) => (b: B) => f(a, b)
    }
   
-  //Ex 5
+  //Ex 5 : see example in main
   def uncurry[A,B,C](f: A => B => C): (A, B) => C = {
     (a: A, b: B) => f(a)(b)
+  }
+  
+  //Ex 6 :
+  def compose[A,B,C](f: B => C, g: A => B): A => C = {
+    (a: A) => f(g(a))
+    //f compose g --cheating ;)
+    //g andThen f --equivalent
   }
     
   //The return type of Unit indicates that this method does not return a meaningful value
