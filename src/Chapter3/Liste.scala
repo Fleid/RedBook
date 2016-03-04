@@ -64,4 +64,11 @@ object Liste{
     case Vide => a2
     case SSL(h,t) => SSL(h, append(t, a2))
   }
+  
+  def init[A](l: Liste[A]): Liste[A] = l match {
+    case Vide => Vide
+    case SSL(h,Vide) => Vide
+    case SSL(h,t) => SSL(h,init(t))
+  }
+  
 }

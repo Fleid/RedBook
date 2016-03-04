@@ -41,6 +41,10 @@ object MyModule {
     
     val example2setHead = Liste.setHead(example2,99)
     println("Exercice 5 : %s".format(example2setHead.toString()))
+
+    val example2init = Liste.init(example2)
+    println("Exercice 6 : %s".format(example2init.toString()))
+    
   } 
  
 }
