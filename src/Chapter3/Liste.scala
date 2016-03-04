@@ -59,4 +59,9 @@ object Liste{
     case Vide => Liste(a)
     case SSL(x,xs) => SSL(a,xs)
   }
+  
+  def append[A](a1: Liste[A], a2: Liste[A]): Liste[A] = a1 match {
+    case Vide => a2
+    case SSL(h,t) => SSL(h, append(t, a2))
+  }
 }
