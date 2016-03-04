@@ -45,6 +45,8 @@ object MyModule {
     val example2init = Liste.init(example2)
     println("Exercice 6 : %s".format(example2init.toString()))
     
+   val total12 = Liste.sum2(example1) 
+    println(total12)
   } 
  
 }
