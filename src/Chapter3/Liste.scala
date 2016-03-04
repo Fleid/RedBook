@@ -49,10 +49,14 @@ object Liste{
     case SSL(x,xs) => {if (i<=0) l else drop(xs,i-1)}
   }
   
-  
   //def dropWhile[A](l: Liste[A], f: A => Boolean): Liste[A] = l match { //en mode newbie
   def dropWhile[A](l: Liste[A])(f: A => Boolean): Liste[A] = l match { //en mode mieux pour l'inference bla
     case Vide => Vide
     case SSL(x,xs) => (if (f(x)) dropWhile(xs)(f) else xs) 
+  }
+  
+  def setHead[A](l: Liste[A], a: A): Liste[A] = l match {
+    case Vide => Liste(a)
+    case SSL(x,xs) => SSL(a,xs)
   }
 }

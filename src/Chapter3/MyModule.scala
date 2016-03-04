@@ -39,6 +39,8 @@ object MyModule {
     val example2droppedWhile = Liste.dropWhile(example2)((x: Int) => x < 8)
     println("Exercice 4 : %s".format(example2droppedWhile.toString()))
     
+    val example2setHead = Liste.setHead(example2,99)
+    println("Exercice 5 : %s".format(example2setHead.toString()))
   } 
  
 }
