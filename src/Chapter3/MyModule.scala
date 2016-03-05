@@ -45,8 +45,13 @@ object MyModule {
     val example2init = Liste.init(example2)
     println("Exercice 6 : %s".format(example2init.toString()))
     
-   val total12 = Liste.sum2(example1) 
+    val total12 = Liste.sum2(example1) 
     println(total12)
+    
+    //Ex8 : This actually rebuild the same list
+    val y = Liste.foldRight(Liste(1,2,3),Vide:Liste[Int])(SSL(_,_))
+    println(Liste(1,2,3))
+    println(y)
   } 
  
 }
