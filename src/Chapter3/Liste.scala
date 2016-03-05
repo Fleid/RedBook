@@ -85,5 +85,8 @@ object Liste{
     foldRight(l,0)(_ + _)
     
   def product2(l: Liste[Double])=
-    foldRight(l,1.0)(_ + _)
+    foldRight(l,1.0)(_ * _)
+    
+  //ex 7 : No way for product2 to interrupt the loop since it's in foldRight, we'll have to add an interrupt switch to foldRight
+
 }
