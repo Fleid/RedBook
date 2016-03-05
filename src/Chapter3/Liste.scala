@@ -98,5 +98,8 @@ object Liste{
     case Vide => 0
     case SSL(_,xs) => 1 + length(xs)
   }
+  
+  def length2[A](l : Liste[A])=
+    foldRight(l,0)(( _ , x: Int) => x + 1)
     
 }

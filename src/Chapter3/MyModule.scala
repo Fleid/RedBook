@@ -55,6 +55,7 @@ object MyModule {
     println(y)
     
     println(Liste.length(Liste(1,2,3)))
+    println(Liste.length2(Liste(10,21,13,4)))
   } 
  
 }
