@@ -20,6 +20,7 @@ object MyModule {
       case _ => 101
      })
     
+    //Ex 1 
     val x = Liste(1,2,3,4,5) match {
       case SSL(x, SSL(2, SSL(4, _))) => x
       case Vide => 42
@@ -52,6 +53,8 @@ object MyModule {
     val y = Liste.foldRight(Liste(1,2,3),Vide:Liste[Int])(SSL(_,_))
     println(Liste(1,2,3))
     println(y)
+    
+    println(Liste.length(Liste(1,2,3)))
   } 
  
 }

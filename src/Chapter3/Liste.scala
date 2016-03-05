@@ -40,17 +40,18 @@ object Liste{
   }
   
 //3.3 Functional data structures and data sharing
-  
+  //Ex 2
   def tail[A](l: Liste[A]): Liste[A] = l match {
     case Vide => Vide
     case SSL(x,xs) => xs
   }
- 
+  //Ex 3 
   def drop[A](l: Liste[A], i: Int): Liste[A] = l match {
     case Vide => Vide
     case SSL(x,xs) => {if (i<=0) l else drop(xs,i-1)}
   }
   
+  //Ex 4
   //def dropWhile[A](l: Liste[A], f: A => Boolean): Liste[A] = l match { //en mode newbie
   def dropWhile[A](l: Liste[A])(f: A => Boolean): Liste[A] = l match { //en mode mieux pour l'inference
     case Vide => Vide
@@ -62,11 +63,13 @@ object Liste{
     case SSL(x,xs) => SSL(a,xs)
   }
   
+  //Ex 5
   def append[A](a1: Liste[A], a2: Liste[A]): Liste[A] = a1 match {
     case Vide => a2
     case SSL(h,t) => SSL(h, append(t, a2))
   }
   
+  //Ex 6
   def init[A](l: Liste[A]): Liste[A] = l match {
     case Vide => Vide
     case SSL(_,Vide) => Vide
@@ -74,6 +77,7 @@ object Liste{
   }
   
 //3.4 Recursion over lists and generalizing to higher-order functions
+  
   
   //Again, placing f in its own argument group after l and z lets type inference determine the input types to f. See dropWhile
   def foldRight[A,B](l: Liste[A], z:B)(f: (A,B) => B): B = l match {
@@ -89,5 +93,10 @@ object Liste{
     
   //Ex 7 : No way for product2 to interrupt the loop since it's in foldRight, we'll have to add an interrupt switch to foldRight
   
+  //Ex 9
+  def length[A](l: Liste[A]): Int = l match {
+    case Vide => 0
+    case SSL(_,xs) => 1 + length(xs)
+  }
     
 }
