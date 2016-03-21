@@ -6,6 +6,7 @@ object MyModule {
  
     val example1 = SSL(1, SSL(2, SSL(3,Vide)))
     val example2 = Liste(1,2,3,7,8,9)
+    val example3 = Liste(1.0,2.0,7.0)
     val total1 = Liste.sum(example1) 
     println(total1)
       
@@ -56,6 +57,14 @@ object MyModule {
     
     println(Liste.length(Liste(1,2,3)))
     println(Liste.length2(Liste(10,21,13,4)))
+    
+    //Ex 11
+    val total13 = Liste.sumLeft(example1) 
+    println("Exercice 11 - sumLeft : %d".format(total13))
+    val total14 = Liste.productLeft(example3) 
+    println("Exercice 11 - productLeft : %f".format(total14))
+    val total15 = Liste.lengthLeft(example3) 
+    println("Exercice 11 - lengthLeft : %d".format(total15))
   } 
  
 }

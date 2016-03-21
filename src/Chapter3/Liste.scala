@@ -93,7 +93,7 @@ object Liste{
     
   //Ex 7 : No way for product2 to interrupt the loop since it's in foldRight, we'll have to add an interrupt switch to foldRight
   
-  //Ex 9
+  //Ex 9 : Compute the length of a list using foldRight
   def length[A](l: Liste[A]): Int = l match {
     case Vide => 0
     case SSL(_,xs) => 1 + length(xs)
@@ -101,5 +101,22 @@ object Liste{
   
   def length2[A](l : Liste[A])=
     foldRight(l,0)(( _ , x: Int) => x + 1)
+  
+  //Ex 10 : https://github.com/fpinscala/fpinscala/blob/master/answers/src/main/scala/fpinscala/datastructures/List.scala
+  @annotation.tailrec  
+  def foldLeft [A,B](l: Liste[A], z:B)(f: (B,A) => B): B = l match {
+      case Vide => z
+      case SSL(x,xs) => foldLeft(xs,f(z,x))(f)
+  }
+  
+  //Ex 11
+  def sumLeft(l: Liste[Int])=
+    foldLeft(l,0)(_+_)
+    
+  def productLeft(l: Liste[Double])=
+    foldLeft(l,1.0)(_*_) 
+    
+  def lengthLeft[A](l : Liste[A])=
+    foldLeft(l,0)(( x: Int, _ ) => x + 1)
     
 }
