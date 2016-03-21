@@ -118,5 +118,15 @@ object Liste{
     
   def lengthLeft[A](l : Liste[A])=
     foldLeft(l,0)(( x: Int, _ ) => x + 1)
-    
+  
+  //Ex 12
+  def reverse[A](l : Liste[A]): Liste[A] = l match {
+    case Vide => Vide
+    case SSL(h,t) => append(reverse(t),SSL(h,Vide))
+  }
+  // http://oldfashionedsoftware.com/2009/07/30/lots-and-lots-of-foldleft-examples/
+  def reverseLeft[A](l : Liste[A]): Liste[A] = 
+    foldLeft(l,Liste[A]())((r,c) => SSL(c,r))
+ 
+  
 }

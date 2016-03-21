@@ -65,6 +65,10 @@ object MyModule {
     println("Exercice 11 - productLeft : %f".format(total14))
     val total15 = Liste.lengthLeft(example3) 
     println("Exercice 11 - lengthLeft : %d".format(total15))
+    
+    //Ex 12
+    val example12 = Liste.reverse(example2)
+    println("Exercice 12 : %s".format(example12.toString()))
   } 
  
 }
